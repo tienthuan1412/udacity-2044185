@@ -31,11 +31,11 @@ import {Request, Response} from 'express';
   /**************************************************************************** */
 
   app.get('/filteredimage', async(req: Request, res: Response) => {
-    const image_url = req.query.image_url.toString();
-    if(!image_url){
+    const image_URL = req.query.image_url.toString();
+    if(!image_URL){
       res.status(400).send('required image url');
     }
-    const filtered_image = await filterImageFromURL(image_url);
+    const filtered_image = await filterImageFromURL(image_URL);
     res.status(200).sendFile(filtered_image, ()=>{
       deleteLocalFiles([filtered_image]);
     });
